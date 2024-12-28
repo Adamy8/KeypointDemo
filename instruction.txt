@@ -1,0 +1,29 @@
+python3 -m venv name_of_venv
+
+--Activate venv
+source venv/bin/activate
+
+--To deactivate venv
+deactivate
+
+--When making requirements file
+pip3 freeze > requirements.txt
+
+---------------------------------------------------------------------------------------
+
+
+collecting datasets, and labelling them using labelImg
+labelImg will produce file in PASCAL format, usually used in tensorFlow API
+
+it can be converted into COCO/YOLO using convertion tool eg. roboflow
+
+labelImg hotkeys:
+    W : create rect box
+    crtl + s : Save
+    D : next image
+    A : previous image
+
+---------------------------------------------------------------------------------------
+
+12/28/2024
+YOLOv8 ultratics
