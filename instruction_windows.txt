@@ -1,0 +1,5 @@
+python -m venv v8venv
+source v8venv/bin/activate
+pip3 install -r requirements.txt
+
+alias python=python3
