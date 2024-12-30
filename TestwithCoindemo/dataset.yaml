@@ -1,5 +1,10 @@
-train: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/copied_images
-val: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/copied_images   # this is for validation
+# MAC: 
+# train: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/images
+# val: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/images   # this is for validation
+
+# Windows:
+train: /home/ady/repos/KeypointDemo/TestwithCoindemo/dataset/images
+val: /home/ady/repos/KeypointDemo/TestwithCoindemo/dataset/images   # this is for validation
 
 # Define class names
 names:
