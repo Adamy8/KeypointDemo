@@ -27,3 +27,27 @@ labelImg hotkeys:
 
 12/28/2024
 YOLOv8 ultratics
+
+---------------------------------------------------------------------------------------
+RESOURCES:   12/30/24
+
+Youtube video:
+    1,  YOLO keypoint Detection:                      https://www.youtube.com/watch?v=gA5N54IO1ko
+        Code: https://github.com/computervisioneng/pose-detection-keypoints-estimation-yolov8
+
+    2,  YOLO FULL(classification/segmentation...):    https://www.youtube.com/watch?v=Z-65nqxUdl4&t=10133s
+
+Docs: (ultralytics)
+    https://docs.ultralytics.com/
+    Train: https://docs.ultralytics.com/modes/train/
+
+Datasets:
+    1, https://github.com/prinik/AwA-Pose
+
+Labelling:
+    1, labelImg
+    2, https://app.cvat.ai/tasks
+
+
+Final Boss:
+    CHATGPT: https://chatgpt.com/
