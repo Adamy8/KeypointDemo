@@ -1,5 +1,5 @@
-train: /path/to/your/dataset/images
-val: /path/to/your/dataset/images
+train: dataset/copied_images
+val: dataset/copied_images   # this is for validation
 
 # Define class names
 names:

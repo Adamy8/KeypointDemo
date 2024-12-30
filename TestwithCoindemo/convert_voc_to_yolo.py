@@ -64,29 +64,39 @@ def process_dataset(folder, output_folder, labels_folder):
             # Corresponding XML file should have the same name
             xml_file = os.path.join(folder, file_name.replace(".jpg", ".xml"))
             
-            # Convert XML to YOLO format
-            yolo_labels = convert_voc_to_yolo(xml_file)
-            
-            # Save to a .txt file in the labels folder
-            txt_file = os.path.join(labels_folder, file_name.replace(".jpg", ".txt"))
-            with open(txt_file, "w") as f:
-                for label in yolo_labels:
-                    f.write(f"{label}\n")
-            print(f"Converted: {file_name.replace('.jpg', '.txt')}")
-
-if __name__ == "__main__":
-    folder = "/Users/YourUsername/Desktop/coin_dataset"  # Path to your images and XMLs folder
-    output_folder = "/Users/YourUsername/Desktop/copied_images"  # Folder to copy images to
-    labels_folder = "/Users/YourUsername/Desktop/yolo_labels"  # Folder to save YOLO .txt label files
+            # Check if the corresponding XML file exists
+            if os.path.exists(xml_file):
+                # Convert XML to YOLO format
+                yolo_labels = convert_voc_to_yolo(xml_file)
+                
+                # Save to a .txt file in the labels folder
+                txt_file = os.path.join(labels_folder, file_name.replace(".jpg", ".txt"))
+                with open(txt_file, "w") as f:
+                    for label in yolo_labels:
+                        f.write(f"{label}\n")
+                print(f"Converted: {file_name.replace('.jpg', '.txt')}")
+            else:
+                print(f"Warning: No XML file found for {file_name}")
     
-    # Create the output folders if they don't exist
+def create_folders(output_folder, labels_folder):
+    """
+    Create output folders if they don't exist.
+    """
     os.makedirs(output_folder, exist_ok=True)
     os.makedirs(labels_folder, exist_ok=True)
+
+if __name__ == "__main__":
+    folder = "../../coinDemo/Pics"  # Path to your images and XMLs folder (relative path)
+    output_folder = "dataset/copied_images"  # Folder to copy images to
+    labels_folder = "dataset/yolo_labels"  # Folder to save YOLO .txt label files
     
-    # Step 1: Copy images to the new folder
+    # Step 1: Create output folders if they don't exist
+    create_folders(output_folder, labels_folder)
+    
+    # Step 2: Copy images to the new folder
     copy_images(folder, output_folder)
     
-    # Step 2: Convert XML annotations to YOLO format and save them
+    # Step 3: Convert XML annotations to YOLO format and save them
     process_dataset(folder, output_folder, labels_folder)
     
     print("Conversion and image copying complete!")
