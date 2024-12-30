@@ -1,0 +1,9 @@
+train: /path/to/your/dataset/images
+val: /path/to/your/dataset/images
+
+# Define class names
+names:
+  0: quarter
+  1: dime
+  2: nickel
+  3: penny
