@@ -1,5 +1,5 @@
-train: dataset/copied_images
-val: dataset/copied_images   # this is for validation
+train: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/copied_images
+val: /Users/AdamYE_1/Desktop/KeypointDemo/TestwithCoindemo/dataset/copied_images   # this is for validation
 
 # Define class names
 names:
