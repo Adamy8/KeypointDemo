@@ -20,7 +20,7 @@ while True:
 
     results = model(frame)
 
-    frame_with_boxes = results.plot()  # This adds bounding boxes to the frame
+    frame_with_boxes = results[0].plot()  # This adds bounding boxes to the frame
 
     cv2.imshow("Detection", frame_with_boxes)
 
