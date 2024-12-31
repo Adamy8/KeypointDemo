@@ -1,10 +1,6 @@
 from ultralytics import YOLO
 
 
-# Define the path to the dataset.yaml file
-dataset_yaml = "dataset.yaml"  # Path to your dataset.yaml file
-
-
 # model = YOLO("yolo11n.pt")  # load a pretrained model (recommended for training)
 model = YOLO("runs/detect/train9/weights/last.pt")
 
