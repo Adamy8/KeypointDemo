@@ -3,3 +3,14 @@ source v8venv/bin/activate
 pip3 install -r requirements.txt
 
 alias python=python3
+
+
+========================================================================================
+1/1/25 yoloDataset structure:
+
+yoloDataset/
+├── images/       # Training images
+├── labels/       # Training labels
+├── val/
+│   ├── images/   # Validation images
+│   ├── labels/   # Validation labels

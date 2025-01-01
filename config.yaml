@@ -1,7 +1,7 @@
 # Data
-path: yoloDataset
-train: images/train  # train images (relative to 'path')
-val: images/val  # val images (relative to 'path')
+path: /home/ady/repos/KeypointDemo/yoloDataset
+train: images/
+val: val/images/
 
 # Keypoints
 kpt_shape: [39, 2]  # [number of keypoints, number of dim]
@@ -10,53 +10,54 @@ flip_idx: [0, 1, 2, 4, 3, 10, 11, 12, 13, 14, 5, 6, 7, 8, 9, 15, 16, 17, 18, 19,
 
 # Classes
 names:
-  1: antelope
-  2: grizzly+bear
-  3: killer+whale
-  4: beaver
-  5: dalmatian
-  6: persian+cat
-  7: horse
-  8: german+shepherd
-  9: blue+whale
-  10: siamese+cat
-  11: skunk
-  12: mole
-  13: tiger
-  14: hippopotamus
-  15: leopard
-  16: moose
-  17: spider+monkey
-  18: humpback+whale
-  19: elephant
-  20: gorilla
-  21: ox
-  22: fox
-  23: sheep
-  24: seal
-  25: chimpanzee
-  26: hamster
-  27: squirrel
-  28: rhinoceros
-  29: rabbit
-  30: bat
-  31: giraffe
-  32: wolf
-  33: chihuahua
-  34: rat
-  35: weasel
-  36: otter
-  37: buffalo
-  38: zebra
-  39: giant+panda
-  40: deer
-  41: bobcat
-  42: pig
-  43: lion
-  44: mouse
-  45: polar+bear
-  46: collie
-  47: walrus
-  48: raccoon
-  49: cow
-  50: dolphin
+  0: antelope
+  1: grizzly+bear
+  2: killer+whale
+  3: beaver
+  4: dalmatian
+  5: persian+cat
+  6: horse
+  7: german+shepherd
+  8: blue+whale
+  9: siamese+cat
+  10: skunk
+  11: mole
+  12: tiger
+  13: hippopotamus
+  14: leopard
+  15: moose
+  16: spider+monkey
+  17: humpback+whale
+  18: elephant
+  19: gorilla
+  20: ox
+  21: fox
+  22: sheep
+  23: seal
+  24: chimpanzee
+  25: hamster
+  26: squirrel
+  27: rhinoceros
+  28: rabbit
+  29: bat
+  30: giraffe
+  31: wolf
+  32: chihuahua
+  33: rat
+  34: weasel
+  35: otter
+  36: buffalo
+  37: zebra
+  38: giant+panda
+  39: deer
+  40: bobcat
+  41: pig
+  42: lion
+  43: mouse
+  44: polar+bear
+  45: collie
+  46: walrus
+  47: raccoon
+  48: cow
+  49: dolphin
+
