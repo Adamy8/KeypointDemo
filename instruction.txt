@@ -43,6 +43,9 @@ Docs: (ultralytics)
 
 Datasets:
     1, https://github.com/prinik/AwA-Pose
+    
+--Format!!!!:
+    1,keypoint format: https://cocodataset.org/#format-data
 
 Labelling:
     1, labelImg
