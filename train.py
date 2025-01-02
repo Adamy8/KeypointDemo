@@ -1,11 +1,9 @@
 from ultralytics import YOLO
 
-model = YOLO("yolo11n.pt")  # load a pretrained model (recommended for training)
+model = YOLO("yolov8n-pose.pt")
+
+# for later use
+# model = YOLO("runs/detect/train/weights/last.pt")
 
 
-# Train the model
-results = model.train(data="config.yaml", epochs=1, imgsz=640)
-
-
-# # Run inference on an image
-# model.predict("test.jpg")
+results = model.train(data="config.yaml", epochs=2, imgsz=640)
