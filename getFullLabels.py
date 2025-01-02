@@ -3,8 +3,8 @@ import pickle
 from PIL import Image
 
 
-yolo_labels_path = './yoloDataset/labels/train/'
 yolo_images_path = './yoloDataset/images/train/'
+yolo_labels_path = './yoloDataset/labels/train/'
 
 annotation_path = './AwA-Pose/Annotations'
 
@@ -77,12 +77,21 @@ def convert_pickle_to_yolo(pickle_file, animal_class, image_path):
         part_data = data['a1'][part_name]
         # yolo_labels.append(f"{part_data[0]:.6f} {part_data[1]:.6f}")  # make it 6 decimal places
         if part_data[0] != -1 and part_data[1] != -1:
-            
-            yolo_labels.append(f"{part_data[0] / img_width:.6f} {part_data[1] / img_height:.6f} 2")   # normalized!!!
+            if is_keypoint_in_box(part_data, bbox):
+                yolo_labels.append(f"{part_data[0] / img_width:.6f} {part_data[1] / img_height:.6f} 2")   # normalized!!!
+            else:
+                yolo_labels.append(f"{part_data[0] / img_width:.6f} {part_data[1] / img_height:.6f} 1")   # invisible
         else:
             yolo_labels.append("0 0 0")
 
     return yolo_labels
+
+
+
+def is_keypoint_in_box(keypoint, bbox):
+    keypoint_x, keypoint_y = keypoint
+    x_min, y_min, x_max, y_max = bbox
+    return x_min <= keypoint_x <= x_max and y_min <= keypoint_y <= y_max
 
 
 if __name__ == "__main__":
