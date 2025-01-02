@@ -3,8 +3,8 @@ import pickle
 from PIL import Image
 
 
-yolo_labels_path = './yoloDataset/train/labels/'
-yolo_images_path = './yoloDataset/train/images/'
+yolo_labels_path = './yoloDataset/labels/train/'
+yolo_images_path = './yoloDataset/images/train/'
 
 annotation_path = './AwA-Pose/Annotations'
 
@@ -77,9 +77,10 @@ def convert_pickle_to_yolo(pickle_file, animal_class, image_path):
         part_data = data['a1'][part_name]
         # yolo_labels.append(f"{part_data[0]:.6f} {part_data[1]:.6f}")  # make it 6 decimal places
         if part_data[0] != -1 and part_data[1] != -1:
-            yolo_labels.append(f"{part_data[0] / img_width:.6f} {part_data[1] / img_height:.6f}")   # normalized!!!
+            
+            yolo_labels.append(f"{part_data[0] / img_width:.6f} {part_data[1] / img_height:.6f} 2")   # normalized!!!
         else:
-            yolo_labels.append("-1 -1")
+            yolo_labels.append("0 0 0")
 
     return yolo_labels
 
