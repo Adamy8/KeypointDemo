@@ -3,12 +3,12 @@ import shutil
 import random
 
 # Paths to the train, val, and test directories
-train_img_dir = './yoloDataset/train/images/'
-train_label_dir = './yoloDataset/train/labels/'
-val_img_dir = './yoloDataset/val/images/'
-val_label_dir = './yoloDataset/val/labels/'
-test_img_dir = './yoloDataset/test/images/'
-test_label_dir = './yoloDataset/test/labels/'
+train_img_dir = './yoloDataset/images/train/'
+train_label_dir = './yoloDataset/labels/train/'
+val_img_dir = './yoloDataset/images/val/'
+val_label_dir = './yoloDataset/labels/val/'
+test_img_dir = './yoloDataset/images/test/'
+test_label_dir = './yoloDataset/labels/test/'
 
 # Create the val and test directories if they don't exist
 os.makedirs(val_img_dir, exist_ok=True)
