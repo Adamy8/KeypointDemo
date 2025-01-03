@@ -5,7 +5,7 @@ from ultralytics import YOLO
 model = YOLO("runs/pose/train7/weights/best.pt")
 
 
-results = model.train(data="config.yaml", epochs=450, imgsz=640)
+results = model.train(data="config.yaml", epochs=50, imgsz=640)
 
 
 # train:    5
@@ -16,3 +16,6 @@ results = model.train(data="config.yaml", epochs=450, imgsz=640)
 # train6:   10   (used best.pt this time)
 # 确实该用best.pt
 # train7:   40  best
+
+# start to evaluate the model, whether to continue training
+# train8:   25  best
