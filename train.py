@@ -19,3 +19,5 @@ results = model.train(data="config.yaml", epochs=25, imgsz=640)
 
 # start to evaluate the model, whether to continue training
 # train8:   25  best
+
+# ---done---
