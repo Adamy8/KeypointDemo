@@ -4,7 +4,41 @@ import cv2
 model_path = "runs/pose/train7/weights/last.pt"
 model = YOLO(model_path)
 
-keypoint_connections = []
+keypoint_connections = [
+    (0, 1),  # nose -> upper_jaw
+    (1, 2),  # upper_jaw -> lower_jaw
+    (3, 4),  # mouth_end_right -> mouth_end_left
+    (5, 3),  # right_eye -> mouth_end_right
+    (5, 4),  # right_eye -> mouth_end_left
+    (6, 5),  # right_earbase -> right_eye
+    (7, 6),  # right_earend -> right_earbase
+    (8, 7),  # right_antler_base -> right_earend
+    (9, 8),  # right_antler_end -> right_antler_base
+    (10, 3), # left_eye -> mouth_end_right
+    (10, 4), # left_eye -> mouth_end_left
+    (11, 10), # left_earbase -> left_eye
+    (12, 11), # left_earend -> left_earbase
+    (13, 12), # left_antler_base -> left_earend
+    (14, 13), # left_antler_end -> left_antler_base
+    (15, 16), # neck_base -> neck_end
+    (17, 18), # throat_base -> throat_end
+    (19, 20), # back_base -> back_end
+    (19, 21), # back_base -> back_middle
+    (20, 21), # back_end -> back_middle
+    (22, 23), # tail_base -> tail_end
+    (24, 25), # front_left_thai -> front_left_knee
+    (25, 26), # front_left_knee -> front_left_paw
+    (27, 28), # front_right_thai -> front_right_paw
+    (28, 29), # front_right_paw -> front_right_knee
+    (30, 31), # back_left_knee -> back_left_paw
+    (32, 33), # back_left_thai -> back_right_thai
+    (32, 30), # back_left_thai -> back_left_knee
+    (33, 34), # back_right_thai -> back_right_paw
+    (33, 35), # back_right_thai -> back_right_knee
+    (36, 37), # belly_bottom -> body_middle_right
+    (37, 38)  # body_middle_right -> body_middle_left
+]
+
 
 video_path = "kubo_video.mp4"
 
