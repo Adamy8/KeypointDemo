@@ -6,7 +6,10 @@ model_path = "runs/pose/train8/weights/last.pt"
 model = YOLO(model_path)
 
 # video_path = "testSample/kubo_video.mp4"
+# output_path = "testResult.mp4"
+
 video_path = "realCase/davis_horse.mp4"
+output_path = "realCase/result.mp4"
 
 bbox_conf_level = 0.5
 
@@ -69,7 +72,7 @@ def draw_bbox(image, bboxes):
             x_min, y_min, x_max, y_max, animal_idx = int(x_min), int(y_min), int(x_max), int(y_max), int(animal_idx)
             cv2.rectangle(image, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
             animal_name = ANIMALS[animal_idx]
-            cv2.putText(image, f"{animal_name} {conf:.2f}", (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            cv2.putText(image, f"{animal_name} {conf:.2f}", (x_min, y_min - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
     return image
 
 
@@ -83,7 +86,6 @@ def process_video(video_path, model, keypoint_connections):
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     # Create a VideoWriter to save the output video
-    output_path = "realCase/result.mp4"
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for mp4 format
     out = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))
 
@@ -101,7 +103,7 @@ def process_video(video_path, model, keypoint_connections):
 
 
         # for result in results:
-        keypoints = results[0].keypoints.cpu().numpy().data[0]
+        keypoints = results[0].keypoints.cpu().numpy().data[0] # 这其实assume只有一个动物，最好做多个
         if len(keypoints) > 0:
             frame_with_lines = draw_keypoints_and_lines(frame.copy(), keypoints, keypoint_connections)
         else:
@@ -124,6 +126,7 @@ def process_video(video_path, model, keypoint_connections):
 
         # Exit if the user presses the 'q' key
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            print("pressed q")
             break
 
     # Release resources
