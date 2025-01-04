@@ -30,8 +30,9 @@ def draw_keypoints_and_lines(image, keypoints, connections):
         else:
             keypointsFlag.append(True)
 
-            cv2.circle(image, (x, y), 5, (0, 255, 0), -1)
-            cv2.putText(image, str(conf), (int(x), int(y) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            cv2.circle(image, (int(x), int(y)), 5, (0, 255, 0), -1)
+            # 这是写conf（optional）
+            # cv2.putText(image, str(round(conf, 3)), (int(x), int(y) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     # draw skeleton
     for start_idx, end_idx in connections:
