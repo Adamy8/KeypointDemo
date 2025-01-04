@@ -57,6 +57,7 @@ Final Boss:
 
 
 
+
 ---------------------------------------------------------------------------------------
 Inside result keypoint:
 
@@ -186,3 +187,38 @@ xyn: array([[[    0.39651,     0.58234],
         [          0,           0],
         [          0,           0],
         [          0,           0]]], dtype=float32)
+
+
+这两个都用 results[0].keypoints.cpu().numpy().data
+
+----1/4/2025---------------------------------------------------------------------------
+Inside results boxes:
+
+(Pdb) p results[0].boxes.cpu().numpy()
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: array([          6], dtype=float32)
+conf: array([    0.72282], dtype=float32)
+data: array([[        401,         524,         970,        1453,     0.72282,           6]], dtype=float32)
+id: None
+is_track: False
+orig_shape: (1920, 1080)
+shape: (1, 6)
+xywh: array([[      685.5,       988.5,         569,         929]], dtype=float32)
+xywhn: array([[    0.63472,     0.51484,     0.52685,     0.48385]], dtype=float32)
+xyxy: array([[        401,         524,         970,        1453]], dtype=float32)
+xyxyn: array([[     0.3713,     0.27292,     0.89815,     0.75677]], dtype=float32)
+(Pdb) 
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: array([          6], dtype=float32)
+conf: array([    0.72282], dtype=float32)
+data: array([[        401,         524,         970,        1453,     0.72282,           6]], dtype=float32)
+id: None
+is_track: False
+orig_shape: (1920, 1080)
+shape: (1, 6)
+xywh: array([[      685.5,       988.5,         569,         929]], dtype=float32)
+xywhn: array([[    0.63472,     0.51484,     0.52685,     0.48385]], dtype=float32)
+xyxy: array([[        401,         524,         970,        1453]], dtype=float32)
+xyxyn: array([[     0.3713,     0.27292,     0.89815,     0.75677]], dtype=float32)
