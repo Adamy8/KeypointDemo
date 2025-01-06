@@ -8,8 +8,9 @@ model = YOLO(model_path)
 # video_path = "testSample/kubo_video.mp4"
 # output_path = "testResult.mp4"
 
-video_path = "realCase/davis_horse.mp4"
-output_path = "realCase/result.mp4"
+#---realCase is gitignored---
+video_path = "realCase/central_park.mp4"
+output_path = "realCase/cp_result.mp4"
 
 bbox_conf_level = 0.5
 
@@ -86,7 +87,7 @@ def process_video(video_path, model, keypoint_connections):
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     # Create a VideoWriter to save the output video
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for mp4 format
+    fourcc = cv2.VideoWriter_fourcc(*'H264')  # Codec for mp4 format
     out = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))
 
     while cap.isOpened():
@@ -99,11 +100,11 @@ def process_video(video_path, model, keypoint_connections):
         results = model(frame)  # Perform inference
 
         # print(results)
-        # breakpoint()
+        # breakpoint()          # for debug
 
 
         # for result in results:
-        keypoints = results[0].keypoints.cpu().numpy().data[0] # 这其实assume只有一个动物，最好做多个
+        keypoints = results[0].keypoints.cpu().numpy().data[0] # 这 assume one animal，最好做多个
         if len(keypoints) > 0:
             frame_with_lines = draw_keypoints_and_lines(frame.copy(), keypoints, keypoint_connections)
         else:
