@@ -6,7 +6,7 @@ model_path = "runs/pose/train8/weights/last.pt"
 model = YOLO(model_path)
 
 # video_path = "testSample/kubo_video.mp4"
-# output_path = "testResult.mp4"
+# output_path = "testSample/testResult.mp4"
 
 #---realCase is gitignored---
 video_path = "realCase/central_park.mp4"
