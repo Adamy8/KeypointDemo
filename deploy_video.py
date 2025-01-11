@@ -9,8 +9,8 @@ model = YOLO(model_path)
 # output_path = "testSample/testResult.mp4"
 
 #---realCase is gitignored---
-video_path = "realCase/central_park.mp4"
-output_path = "realCase/cp_result.mp4"
+video_path = "realCase/kubo_long.mp4"
+output_path = "realCase/kl_result.mp4"
 
 bbox_conf_level = 0.5
 
