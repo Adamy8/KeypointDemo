@@ -31,6 +31,10 @@ YOLOv8 ultratics
 ---------------------------------------------------------------------------------------
 RESOURCES:   12/30/24
 
+# Theory:
+    Stanford CS229: https://www.youtube.com/watch?v=het9HFqo1TQ&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&index=5
+
+
 Youtube video:
     1,  YOLO keypoint Detection:                      https://www.youtube.com/watch?v=gA5N54IO1ko
         Code: https://github.com/computervisioneng/pose-detection-keypoints-estimation-yolov8
