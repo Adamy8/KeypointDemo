@@ -20,26 +20,32 @@ while True:
     
     # Perform inference
     results = model(frame)
-
-    print(results)
-    breakpoint()
     
     # Extract keypoints and bounding boxes
     for result in results:
-        boxes = result.boxes.cpu().numpy()
-        keypoints = result.keypoints.cpu().numpy()
+        boxes = result.boxes
+        keypoints = result.keypoints
         
-        for box, kp in zip(boxes, keypoints):
-            x1, y1, x2, y2 = map(int, box[:4])
-            # Draw bounding box
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            
-            # Draw keypoints
-            for (kp_x, kp_y) in kp:
-                cv2.circle(frame, (int(kp_x), int(kp_y)), 3, (255, 0, 0), -1)
+        if boxes is not None and len(boxes) > 0:
+            xyxy = boxes.xyxy.cpu().numpy()
+            for box in xyxy:
+                x1, y1, x2, y2 = map(int, box[:4])
+                conf = boxes.conf.cpu().numpy()[0]
+                # cls = int(box[5])    # class
+                # Draw bounding box
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                # Display class and confidence
+                label = f'Conf: {conf:.2f}'
+                cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        
+        if keypoints is not None and keypoints.has_visible:
+            kps = keypoints.xy.cpu().numpy()
+            for kp in kps[0]:
+                x, y = map(int, kp[:2])
+                cv2.circle(frame, (x, y), 5, (0, 0, 255), -1)
     
     # Display the frame with detections
-    cv2.imshow('Club Detections', frame)
+    cv2.imshow('YOLO-Pose Detections', frame)
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

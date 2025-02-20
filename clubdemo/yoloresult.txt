@@ -1,0 +1,30 @@
+ultralytics.engine.results.Boxes object with attributes:
+
+cls: tensor([0.])
+conf: tensor([0.4180])
+data: tensor([[157.0000,  42.0000, 220.0000,  92.0000,   0.4180,   0.0000]])
+id: None
+is_track: False
+orig_shape: (183, 275)
+shape: torch.Size([1, 6])
+xywh: tensor([[188.5000,  67.0000,  63.0000,  50.0000]])
+xywhn: tensor([[0.6855, 0.3661, 0.2291, 0.2732]])
+xyxy: tensor([[157.,  42., 220.,  92.]])
+xyxyn: tensor([[0.5709, 0.2295, 0.8000, 0.5027]])
+
+
+ultralytics.engine.results.Keypoints object with attributes:
+
+conf: tensor([[0.7301, 0.8801, 0.8203]])
+data: tensor([[[166.7439,  44.2129,   0.7301],
+         [212.7402,  80.9222,   0.8801],
+         [214.3536,  90.3975,   0.8203]]])
+has_visible: True
+orig_shape: (183, 275)
+shape: torch.Size([1, 3, 3])
+xy: tensor([[[166.7439,  44.2129],
+         [212.7402,  80.9222],
+         [214.3536,  90.3975]]])
+xyn: tensor([[[0.6063, 0.2416],
+         [0.7736, 0.4422],
+         [0.7795, 0.4940]]])
