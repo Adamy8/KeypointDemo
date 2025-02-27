@@ -8,7 +8,7 @@ model_path = "7best.pt"
 model = YOLO(model_path)
 
 # Open input video
-input_video_path = "input.mp4"  # Change this to your input video file
+input_video_path = "input.mp4"
 cap = cv2.VideoCapture(input_video_path)
 
 # Get video properties
@@ -22,15 +22,23 @@ fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
 out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
 # Buffer to store keypoint positions (second keypoint - club base)
-trajectory = deque(maxlen=20)  # Store last 20 positions for smoothing
+trajectory = deque(maxlen=50)  # Increased history length for smoother motion
 
-def moving_average(points, window_size=5):
-    """Applies a simple moving average filter to smooth the trajectory."""
-    if len(points) < window_size:
-        return points[-1]  # Not enough points, return last known position
-    avg_x = np.mean([p[0] for p in points[-window_size:]])
-    avg_y = np.mean([p[1] for p in points[-window_size:]])
-    return int(avg_x), int(avg_y)
+# Initialize EMA smoothing parameters
+ema_position = None  # Exponential Moving Average position
+alpha = 0.2  # Smoothing factor (higher = more reactive, lower = smoother)
+
+def exponential_moving_average(new_point):
+    """Applies an exponential moving average filter for smoothing."""
+    global ema_position
+    if ema_position is None:
+        ema_position = new_point  # Initialize with first detected position
+    else:
+        ema_position = (
+            int(alpha * new_point[0] + (1 - alpha) * ema_position[0]),
+            int(alpha * new_point[1] + (1 - alpha) * ema_position[1])
+        )
+    return ema_position
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -65,24 +73,21 @@ while cap.isOpened():
                     detected_kp = (x, y)
                     cv2.circle(frame, (x, y), 5, (0, 0, 255), -1)
 
-    # Add detected keypoint to trajectory, or keep last known if missing
+    # Add detected keypoint to trajectory, or estimate its position if missing
     if detected_kp:
-        trajectory.append(detected_kp)
-    elif trajectory:  # Use last known position if keypoint is lost
+        smoothed_kp = exponential_moving_average(detected_kp)
+        trajectory.append(smoothed_kp)
+    elif trajectory:  # If keypoint is lost, use last known EMA position
         trajectory.append(trajectory[-1])
 
-    # Smooth the trajectory using moving average
-    if trajectory:
-        smoothed_kp = moving_average(list(trajectory))
-
-        # Draw trajectory line
+    # Draw smooth trajectory line
+    if len(trajectory) > 1:
         for i in range(1, len(trajectory)):
-            pt1 = moving_average(list(trajectory)[:i])  # Smooth previous points
-            pt2 = moving_average(list(trajectory)[:i+1])
-            cv2.line(frame, pt1, pt2, (255, 0, 0), 2)
+            cv2.line(frame, trajectory[i - 1], trajectory[i], (255, 0, 0), 2)
 
-        # Draw smoothed point
-        cv2.circle(frame, smoothed_kp, 6, (255, 255, 0), -1)
+    # Draw latest smoothed keypoint
+    if trajectory:
+        cv2.circle(frame, trajectory[-1], 6, (255, 255, 0), -1)
 
     # Show frame while processing
     cv2.imshow("Processing Video", frame)
