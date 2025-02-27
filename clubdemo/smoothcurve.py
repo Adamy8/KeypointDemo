@@ -22,11 +22,11 @@ fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
 out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
 # Buffer to store keypoint positions (second keypoint - club base)
-trajectory = deque(maxlen=50)  # Increased history length for smoother motion
+trajectory = deque(maxlen=75)  # Increased history length for smoother motion
 
 # Initialize EMA smoothing parameters
 ema_position = None  # Exponential Moving Average position
-alpha = 0.2  # Smoothing factor (higher = more reactive, lower = smoother)
+alpha = 0.05  # Smoothing factor (higher = more reactive, lower = smoother)
 
 def exponential_moving_average(new_point):
     """Applies an exponential moving average filter for smoothing."""
