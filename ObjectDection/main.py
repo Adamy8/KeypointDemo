@@ -4,7 +4,7 @@ import cv2
 
 # model = YOLO("yolo11n.pt")
 
-distancecalculator = solutions.DistanceCalculator(
+distancecalculator = solutions.DistanceCalculation(
     model="yolo11n.pt",
     show=True,
 )
@@ -13,7 +13,7 @@ w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FR
 video_writer = cv2.VideoWriter("distance_output.avi", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
 
 # process video
-cap = cv2.VideoCapture("path/to/video.mp4")
+cap = cv2.VideoCapture(0)
 assert cap.isOpened(), "Error reading video file"
 
 while cap.isOpened():
