@@ -4,26 +4,20 @@ from ultralytics.solutions import distance_calculation
 import cv2
 
 model = YOLO("yolo11n.pt")
-# model = YOLO("yolov8n.pt")
 
-cap = cv2.VideoCapture(1)
-assert cap.isOpened(), "Error opening video file"
+image = cv2.imread("pic_person.jpg")
+assert image is not None, "Error opening image"
 
-dist_obj = distance_calculation.DistanceCalculation()
+distance = distance_calculation.DistanceCalculation(model="yolo11n.pt", show=True)
 
-# Process video frames
-while True:
-    success, frame = cap.read()
-    if not success:
-        break
 
-    tracks = model.track(frame, persist=True)
+if image is not None:
+    result = distance.calculate(image)
+    print("Distance calculation result:", result)
+else:
+    print("Failed to read a test frame for distance calculation.")
 
-    frame = dist_obj.start_process(frame, tracks)
 
-    cv2.imshow('Distance Calculation', frame)
-    if cv2.waitKey(1) == ord('q'):  # Press 'q' to quit
-        break
-
-cap.release()
+# cv2.imshow("Image", result)
+cv2.waitKey(0)
 cv2.destroyAllWindows()
