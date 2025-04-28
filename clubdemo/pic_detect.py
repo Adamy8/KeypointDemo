@@ -16,13 +16,12 @@ image = cv2.imread(image_path)
 results = model(image)
 
 print(results[0].keypoints)
-breakpoint()
+# breakpoint()
 
 
 # Extract keypoints and bounding boxes
 for result in results:
     boxes = result.boxes
-    # keypoints = result.keypoints
     
     if boxes is not None and len(boxes) > 0:
         xyxy = boxes.xyxy.cpu().numpy()
