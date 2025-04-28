@@ -5,7 +5,7 @@ import numpy as np
 from ultralytics import YOLO
 
 # Load the YOLO model
-model_path = "7best.pt"
+model_path = "last.pt"
 model = YOLO(model_path)
 
 # Load the image
@@ -22,7 +22,7 @@ breakpoint()
 # Extract keypoints and bounding boxes
 for result in results:
     boxes = result.boxes
-    keypoints = result.keypoints
+    # keypoints = result.keypoints
     
     if boxes is not None and len(boxes) > 0:
         xyxy = boxes.xyxy.cpu().numpy()
@@ -36,11 +36,11 @@ for result in results:
             label = f'Class: {cls}, Conf: {conf:.2f}'
             cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
     
-    if keypoints is not None and keypoints.has_visible:
-        kps = keypoints.xy.cpu().numpy()
-        for kp in kps[0]:
-            x, y = map(int, kp[:2])
-            cv2.circle(image, (x, y), 5, (0, 0, 255), -1)
+    # if keypoints is not None and keypoints.has_visible:
+    #     kps = keypoints.xy.cpu().numpy()
+    #     for kp in kps[0]:
+    #         x, y = map(int, kp[:2])
+    #         cv2.circle(image, (x, y), 5, (0, 0, 255), -1)
 
 # Display the image with detections
 cv2.imshow('YOLO-Pose Detections', image)
